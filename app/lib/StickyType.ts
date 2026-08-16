@@ -1,5 +1,5 @@
-import ReminderIcon from "@/public/ReminderIcon.png";
-import NoteIcon from "@/public/NoteIcon.png";
+import ReminderIcon from "@/public/ReminderIcon.svg";
+import NoteIcon from "@/public/NoteIcon.svg";
 import type { StaticImageData } from "next/image";
 
 export const Reminder = "REMINDER";
@@ -10,6 +10,7 @@ export type StickyType = "NOTE" | "REMINDER";
 export const StickyConfig: Record<
   StickyType,
   {
+    title: string;
     color: string;
     icon: StaticImageData;
     size: {
@@ -25,6 +26,7 @@ export const StickyConfig: Record<
   }
 > = {
   NOTE: {
+    title: "Note",
     color: "bg-notes-yellow",
     icon: NoteIcon,
     size: {
@@ -40,6 +42,7 @@ export const StickyConfig: Record<
   },
 
   REMINDER: {
+    title: "Reminder",
     color: "bg-reminder-blue",
     icon: ReminderIcon,
     size: {

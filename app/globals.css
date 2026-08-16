@@ -8,13 +8,13 @@
 @theme {
   --color-header-gray: #939390;
   --color-reminder-blue: #5590d8;
-  --color-notes-yellow: #cbd855;
+  --color-notes-yellow: #8fbe32;
   --color-main-gray: #d9d9d9;
   --text-header-main: 90px;
   --text-header-sub: 61px;
   --width-sticky: 450px;
   --height-sticky: 450px;
-  --shadow-sticky: 0 6px 4px 3px rgba(0,0,0,0.25);
+  --shadow-sticky: 0 6px 4px 3px rgba(0, 0, 0, 0.25);
 }
 
 @theme inline {
