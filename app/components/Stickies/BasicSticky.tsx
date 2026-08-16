@@ -1,5 +1,5 @@
 "use client";
-import { Reminder, StickyConfig, StickyType } from "@/app/lib/StickyType";
+import { StickyConfig, StickyType } from "@/app/lib/StickyType";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
@@ -21,10 +21,12 @@ export default function BasicSticky({
 
   const [title, setTitle] = useState<string>(stickyTitle || stickyConfig.title);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const addToBoardCheck = title !== stickyConfig.title && title !== "";
 
   return (
     <>
       {headerSticky ? (
+       <div className="relative flex flex-col-reverse items-center w-sticky shadow-sticky">
         <div
           onClick={() => inputRef.current?.focus()}
           className={`
@@ -32,8 +34,7 @@ export default function BasicSticky({
       flex flex-col justify-center
       w-sticky h-sticky
       items-center
-      ${stickyConfig.color}
-      shadow-sticky
+      ${stickyConfig.color} 
       cursor-pointer
       hover:text-main-gray
       focus:border-main-gray
@@ -59,8 +60,6 @@ export default function BasicSticky({
 
             onChange={(e) => {
               setTitle(e.target.value);
-
-              // Reset first so it can shrink as well as grow
               e.target.style.height = "30px";
               e.target.style.height = `${Math.max(30, e.target.scrollHeight)}px`;
             }}
@@ -99,14 +98,52 @@ export default function BasicSticky({
             }}
           />
         </div>
+         {addToBoardCheck && (
+             <button className={`absolute left-0 top-full shadow-sticky w-sticky text-header-sub underline text-center ${stickyConfig.color} hover:text-main-gray`} >Add {stickyConfig.title}</button>
+         )}
+       </div>
       ) : (
-        <div className={`${stickyConfig.color} w-sticky h-sticky`}>
-          <Image
-            src={stickyConfig.icon}
-            alt={stickyType}
-            width={size.width}
-            height={size.height}
+        <div className={`${stickyConfig.color} w-sticky-small h-sticky-small`}>
+         <textarea
+             ref={inputRef}
+             value={title}
+             placeholder={stickyConfig.title}
+             disabled={true}
+             className="
+              w-full
+
+              h-[112px]
+              min-h-[112px]
+              resize-none
+              overflow-y-auto
+              [scrollbar-width:thin]
+              [scrollbar-color:rgba(0,0,0,0.2)_transparent]
+              bg-transparent
+              outline-none
+              text-center
+              text-header-main
+              leading-tight
+            "
+         />
+          <span
+              className="
+              bg-current
+              group-focus-within:hidden
+            "
+              style={{
+                width: size.width,
+                height: size.height,
+                WebkitMaskImage: `url(${stickyConfig.icon.src})`,
+                maskImage: `url(${stickyConfig.icon.src})`,
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskPosition: "center",
+                maskPosition: "center",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+              }}
           />
+
         </div>
       )}
     </>

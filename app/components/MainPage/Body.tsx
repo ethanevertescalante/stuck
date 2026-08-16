@@ -6,9 +6,9 @@ export default function Body() {
     <div className="flex-1 flex flex-col justify-start  items-center w-full min-h-screen  bg-main-gray overflow-hidden">
       <p className="text-header-main w-full text-center">As Easy As...</p>
       <p className="text-header-main w-full text-center pb-20 ">
-        Click {"->"} Type {"->"} Enter
+        Click {"->"} Type {"->"} Go
       </p>
-      <div className="flex flex-row justify-center w-full gap-22 items-center">
+      <div className="relative flex flex-row justify-center w-full gap-22 items-center">
         <BasicSticky
           stickyType={Reminder}
           headerSticky={true}
