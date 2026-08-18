@@ -35,8 +35,8 @@ export const StickyConfig: Record<
         height: 95,
       },
       normal: {
-        width: 17,
-        height: 22,
+        width: 30,
+        height: 40,
       },
     },
   },
@@ -51,8 +51,8 @@ export const StickyConfig: Record<
         height: 96,
       },
       normal: {
-        width: 31,
-        height: 28,
+        width: 50,
+        height: 40,
       },
     },
   },

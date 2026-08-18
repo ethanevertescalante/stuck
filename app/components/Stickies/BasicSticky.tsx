@@ -1,6 +1,5 @@
 "use client";
-import { StickyConfig, StickyType } from "@/app/lib/StickyType";
-import Image from "next/image";
+import {Reminder, StickyConfig, StickyType} from "@/app/lib/StickyType";
 import { useRef, useState } from "react";
 
 type BasicStickyProps = {
@@ -77,6 +76,7 @@ export default function BasicSticky({
               text-center
               text-header-main
               leading-tight
+              pointer-events-none
             "
           />
           <span
@@ -99,52 +99,58 @@ export default function BasicSticky({
           />
         </div>
          {addToBoardCheck && (
-             <button className={`absolute left-0 top-full shadow-sticky w-sticky text-header-sub underline text-center ${stickyConfig.color} hover:text-main-gray`} >Add {stickyConfig.title}</button>
+             <button className={`absolute left-0 top-full shadow-sticky w-sticky-small text-header-sub underline text-center ${stickyConfig.color} hover:text-main-gray`} >Add {stickyConfig.title}</button>
          )}
        </div>
       ) : (
-        <div className={`${stickyConfig.color} w-sticky-small h-sticky-small`}>
-         <textarea
-             ref={inputRef}
-             value={title}
-             placeholder={stickyConfig.title}
-             disabled={true}
-             className="
-              w-full
 
-              h-[112px]
-              min-h-[112px]
-              resize-none
-              overflow-y-auto
-              [scrollbar-width:thin]
-              [scrollbar-color:rgba(0,0,0,0.2)_transparent]
-              bg-transparent
-              outline-none
-              text-center
-              text-header-main
-              leading-tight
-            "
-         />
-          <span
-              className="
-              bg-current
-              group-focus-within:hidden
-            "
-              style={{
-                width: size.width,
-                height: size.height,
-                WebkitMaskImage: `url(${stickyConfig.icon.src})`,
-                maskImage: `url(${stickyConfig.icon.src})`,
-                WebkitMaskRepeat: "no-repeat",
-                maskRepeat: "no-repeat",
-                WebkitMaskPosition: "center",
-                maskPosition: "center",
-                WebkitMaskSize: "contain",
-                maskSize: "contain",
-              }}
-          />
-
-        </div>
+          <div
+              className={`
+            relative  
+            ${stickyConfig.color}
+            w-sticky-small
+            h-sticky-small
+            flex
+            items-baseline
+            gap-4
+            shadow-sticky 
+          `}
+          >
+            <div
+                className="
+                flex-1
+                min-w-0
+                ml-2
+                text-sticky-small
+                leading-none
+                underline
+                hover:text-main-gray
+                cursor-pointer
+              "
+            >
+              {title}
+            </div>
+            {stickyType === Reminder && (
+                <div className="absolute cursor-pointer bottom-2 right-2 whitespace-nowrap leading-none underline hover:text-main-gray text-sticky-sub">
+                  Due Today @ 9PM
+                </div>
+            )}
+            <span
+                className="bg-current shrink-0 self-start"
+                style={{
+                  width: size.width,
+                  height: size.height,
+                  WebkitMaskImage: `url(${stickyConfig.icon.src})`,
+                  maskImage: `url(${stickyConfig.icon.src})`,
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                }}
+            />
+          </div>
       )}
     </>
   );

@@ -9,7 +9,10 @@ export default function Header() {
   return (
     <header>
       <div className="flex items-center p-3 align-baseline bg-header-gray h-[94px] ">
-        <Link href={"/"} className="outline-header-gray flex items-center hover:text-main-gray">
+        <Link
+          href={"/"}
+          className="outline-header-gray flex items-center hover:text-main-gray"
+        >
           <p className="text-header-main leading-none">St</p>
           <span
             className=" relative bg-current top-[6px]"
@@ -29,7 +32,10 @@ export default function Header() {
           <p className="text-header-main leading-none ">ck/</p>
         </Link>
         <div className=" flex justify-end w-full items-center align-baseline p-3">
-          <Link href={"/login"} className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray">
+          <Link
+            href={"/login"}
+            className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray"
+          >
             Sign In
           </Link>
         </div>
