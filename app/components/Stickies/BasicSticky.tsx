@@ -99,7 +99,7 @@ export default function BasicSticky({
           />
         </div>
          {addToBoardCheck && (
-             <button className={`absolute left-0 top-full shadow-sticky w-sticky-small text-header-sub underline text-center ${stickyConfig.color} hover:text-main-gray`} >Add {stickyConfig.title}</button>
+             <button className={`absolute top-full shadow-sticky w-full text-header-sub underline text-center ${stickyConfig.color} hover:text-main-gray`} >Add {stickyConfig.title}</button>
          )}
        </div>
       ) : (
