@@ -28,6 +28,7 @@ export const StickyConfig: Record<
   {
     title: string;
     color: string;
+    accentColor: string;
     icon: StaticImageData;
     size: {
       header: {

@@ -7,7 +7,9 @@
 @theme {
   --color-header-gray: #939390;
   --color-reminder-blue: #5590d8;
+  --color-reminder-blue-accent: #83b4ee;
   --color-notes-yellow: #8fbe32;
+  --color-notes-yellow-accent: #b7d86e;
   --color-main-gray: #d9d9d9;
   --text-header-main: 90px;
   --text-header-sub: 61px;

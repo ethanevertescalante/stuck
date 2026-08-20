@@ -13,8 +13,23 @@ export default function CalendarSticky({
     setDisplayDate,
                                        }: CalendarStickyProps) {
 
+
+    const parts = new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+    }).formatToParts(date);
+
+    const hour = parts.find(p => p.type === "hour")?.value;
+    const minute = parts.find(p => p.type === "minute")?.value;
+    const ampm = parts.find(p => p.type === "dayPeriod")?.value;
+
+
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
     const month = displayDate.getMonth();
     const year = displayDate.getFullYear();
+
+    console.log(hours)
 
     const firstDay = new Date(year, month, 1).getDay();
 
@@ -30,7 +45,42 @@ export default function CalendarSticky({
         (_, index) => index + 1
     );
 
+    const previousHour = () => {
+        const newDate = new Date(date);
+        newDate.setHours(hours - 1);
+        setDate(newDate);
+    }
 
+    const nextHour = () => {
+        const newDate = new Date(date);
+        newDate.setHours(hours + 1);
+        newDate.setDate(displayDate.getDate());
+        setDate(newDate);
+    }
+
+    const previousMinute = () => {
+        const newDate = new Date(date);
+        newDate.setMinutes(minutes - 1);
+        setDate(newDate);
+    }
+
+    const nextMinute = () => {
+        const newDate = new Date(date);
+        newDate.setMinutes(minutes + 1);
+        setDate(newDate);
+    }
+
+    const changeAMPM = () => {
+        const newDate = new Date(date);
+
+        if(newDate.getHours() >= 12){
+            newDate.setHours(hours-12)
+        }else{
+            newDate.setHours(hours+12)
+        }
+
+        setDate(newDate);
+    }
 
     const previousMonth = () => {
         const newDate = new Date(displayDate);
@@ -54,7 +104,7 @@ export default function CalendarSticky({
 
     return (
        <>
-        <div className={"w-sticky h-sticky text-sticky-small bg-blue-400 "}>
+        <div className={"w-sticky h-sticky text-sticky-small bg-reminder-blue "}>
             <div className="flex justify-center  mt-13 text-center">
                 <button onClick={previousMonth} className="hover:text-main-gray cursor-pointer">{"<\u00A0 \u00A0"}</button>
                 <span className="w-53">
@@ -72,7 +122,8 @@ export default function CalendarSticky({
                 {days.map((day) => (
                     <span
                         key={day}
-                        className={`hover:text-main-gray cursor-pointer ${day === date.getDate()  && "bg-main-gray rounded-xl"}`}
+                        className={`cursor-pointer pl-2 pr-2 ${day === date.getDate() && month === date.getMonth() && year === date.getFullYear()  ? " bg-reminder-blue-accent rounded-full" : "hover:text-main-gray"} ${day === new Date().getDate() && month === new Date().getMonth() ?  "bg-gray-400  rounded-full":""}`}
+
                         onClick={() => changeDay(day)}
                     >
                         {String(day).padStart(2, "0")}
@@ -81,12 +132,12 @@ export default function CalendarSticky({
             </div>
 
         </div>
-           <div className={"absolute mb-3 text-center text-header-sub"}>
-               {date.toLocaleTimeString("en-US", {
-                   hour: "numeric",
-                   minute: "2-digit",
-               })}
-           </div>
+
+               <div className="text-header-sub absolute bottom-1 flex select-none gap-1">
+                   <div onClick={() => nextHour()} className={"hover:text-main-gray"}>{hour}</div>:
+                   <div onClick={() => nextMinute()} className={"hover:text-main-gray"}>{minute}</div>
+                   <div onClick={() => changeAMPM()} className={"hover:text-main-gray"}>{ampm}</div>
+               </div>
            </>
 
     )
