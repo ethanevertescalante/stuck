@@ -4,3 +4,7 @@ import { DateTime } from "luxon";
 export function formatStickyDate(date: DateTime) {
   return format(date, "M/d/yy '@' h:mma");
 }
+
+export function formatStickyTime(date: DateTime) {
+  return format(date, " '@' h:mma")
+}

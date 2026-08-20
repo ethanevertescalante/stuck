@@ -23,18 +23,13 @@ export default function CalendarSticky({
     const minute = parts.find(p => p.type === "minute")?.value;
     const ampm = parts.find(p => p.type === "dayPeriod")?.value;
 
-
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const month = displayDate.getMonth();
     const year = displayDate.getFullYear();
 
-    console.log(hours)
-
     const firstDay = new Date(year, month, 1).getDay();
-
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
 
     const monthName = new Date(year, month).toLocaleString("default", {
         month: "long",
@@ -45,11 +40,11 @@ export default function CalendarSticky({
         (_, index) => index + 1
     );
 
-    const previousHour = () => {
-        const newDate = new Date(date);
-        newDate.setHours(hours - 1);
-        setDate(newDate);
-    }
+    // const previousHour = () => {
+    //     const newDate = new Date(date);
+    //     newDate.setHours(hours - 1);
+    //     setDate(newDate);
+    // }
 
     const nextHour = () => {
         const newDate = new Date(date);
@@ -58,11 +53,11 @@ export default function CalendarSticky({
         setDate(newDate);
     }
 
-    const previousMinute = () => {
-        const newDate = new Date(date);
-        newDate.setMinutes(minutes - 1);
-        setDate(newDate);
-    }
+    // const previousMinute = () => {
+    //     const newDate = new Date(date);
+    //     newDate.setMinutes(minutes - 1);
+    //     setDate(newDate);
+    // }
 
     const nextMinute = () => {
         const newDate = new Date(date);
@@ -106,8 +101,8 @@ export default function CalendarSticky({
        <>
         <div className={"w-sticky h-sticky text-sticky-small bg-reminder-blue "}>
             <div className="flex justify-center  mt-13 text-center">
-                <button onClick={previousMonth} className="hover:text-main-gray cursor-pointer">{"<\u00A0 \u00A0"}</button>
-                <span className="w-53">
+                <button onClick={previousMonth} disabled={new Date(year, month) < new Date()} className={`hover:text-main-gray ${new Date(year, month) < new Date() ? "text-gray-400 cursor-not-allowed" : "cursor-pointer"} `}>{"<\u00A0 \u00A0"}</button>
+                <span className={`w-53 ${year < date.getFullYear() && "cursor-not-allowed text-gray"}`}>
                     {monthName} {year}
                 </span>
                 <button onClick={nextMonth} className="hover:text-main-gray cursor-pointer">{"\u00A0 \u00A0>"}</button>
@@ -117,17 +112,20 @@ export default function CalendarSticky({
                 {Array.from({ length: firstDay }).map((_, index) => (
                     <span key={`empty-${index}`} />
                 ))}
-
-
                 {days.map((day) => (
-                    <span
+                    <button
                         key={day}
-                        className={`cursor-pointer pl-2 pr-2 ${day === date.getDate() && month === date.getMonth() && year === date.getFullYear()  ? " bg-reminder-blue-accent rounded-full" : "hover:text-main-gray"} ${day === new Date().getDate() && month === new Date().getMonth() ?  "bg-gray-400  rounded-full":""}`}
-
+                        className={`
+                         pl-2 pr-2 
+                        ${day === date.getDate() && month === date.getMonth() && year === date.getFullYear()  ? " bg-reminder-blue-accent rounded-full" : "hover:text-main-gray"} 
+                        ${day === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ?  "bg-gray-400  rounded-full":""}
+                        ${new Date(year, month, day+1) < new Date() ? "cursor-not-allowed text-gray-400" : "cursor-pointer"}          
+                        `}
                         onClick={() => changeDay(day)}
+                        disabled={new Date(year, month, day+1) < new Date()}
                     >
                         {String(day).padStart(2, "0")}
-                    </span>
+                    </button>
                 ))}
             </div>
 

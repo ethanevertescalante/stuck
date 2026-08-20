@@ -1,5 +1,5 @@
 import { Reminder, StickyConfig, StickyType } from "@/app/lib/StickyType";
-import { formatStickyDate } from "@/app/lib/formatSticky";
+import {formatStickyDate, formatStickyTime} from "@/app/lib/formatSticky";
 import {ChangeEvent, useRef, useState} from "react";
 import { StickyProps } from "@/app/lib/StickyProps";
 import type { FocusEvent } from "react";
@@ -31,6 +31,16 @@ export default function HeaderSticky({
           setShowCalendar(true);
       }
   }
+
+    const isSameDay = (a: Date, b: Date) =>
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate();
+
+    const isTomorrow = (a: Date, b: Date) =>
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate()+1;
 
   const titleCheck =  () => {
         if (title === stickyConfig.title) {
@@ -88,7 +98,14 @@ export default function HeaderSticky({
         )}
         {stickyType === Reminder && (
             <button onClick={() => calendar()} className="absolute top-2 text-sticky-small hover:text-main-gray cursor-pointer">
-                {DaysOfWeek[date?.getDay()]}, {formatStickyDate(date)}
+                {isSameDay(date, new Date()) ? (
+                    <div>Today {formatStickyTime(date)}</div>
+                ) : isTomorrow( date ,new Date()) ?(
+                    <div>Tomorrow {formatStickyTime(date)}</div>
+                ) : (
+                    <div>{DaysOfWeek[date?.getDay()]}, {formatStickyDate(date)}</div>
+                )}
+
             </button>
         )}
         {addToBoardCheck && (
