@@ -3,6 +3,8 @@ import { formatStickyDate } from "@/app/lib/formatSticky";
 import {ChangeEvent, useRef, useState} from "react";
 import { StickyProps } from "@/app/lib/StickyProps";
 import type { FocusEvent } from "react";
+import CalendarSticky from "@/app/components/Stickies/CalendarSticky";
+import {DaysOfWeek} from "@/app/lib/DaysOfWeek";
 
 export default function HeaderSticky({
   title,
@@ -20,6 +22,7 @@ export default function HeaderSticky({
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const addToBoardCheck = title !== stickyConfig.title && title !== "";
   const [showCalendar, setShowCalendar] = useState(false);
+  const [displayDate, setDisplayDate] = useState<Date>(new Date(date || new Date()));
 
   const calendar = () => {
       if (showCalendar) {
@@ -81,13 +84,11 @@ export default function HeaderSticky({
                 />
             </div>
         ): (
-            <button onClick={() => calendar()} className={`  text-sticky-small ${stickyConfig.color} w-sticky h-sticky hover:text-main-gray cursor-pointer`}>
-                this should be a calendar
-            </button>
+            <CalendarSticky date={date || new Date()} setDate={setDate} displayDate={displayDate} setDisplayDate={setDisplayDate}/>
         )}
         {stickyType === Reminder && (
             <button onClick={() => calendar()} className="absolute top-2 text-sticky-small hover:text-main-gray cursor-pointer">
-                {formatStickyDate(date)}
+                {DaysOfWeek[date?.getDay()]}, {formatStickyDate(date)}
             </button>
         )}
         {addToBoardCheck && (
