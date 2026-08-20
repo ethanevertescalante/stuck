@@ -1,6 +1,6 @@
 "use client";
 
-import BasicSticky from "@/app/components/Stickies/BasicSticky";
+import Sticky from "@/app/components/Stickies/Sticky";
 import { Note, Reminder } from "@/app/lib/StickyType";
 import { Rnd } from "react-rnd";
 
@@ -15,11 +15,10 @@ export default function Board() {
           height: 250,
         }}
         bounds="parent"
-
       >
         <div className="w-full h-full">
           <div>
-            <BasicSticky stickyType={Note} headerSticky={false} />
+            <Sticky stickyType={Note} headerSticky={false} />
           </div>
         </div>
       </Rnd>
@@ -31,11 +30,10 @@ export default function Board() {
           height: 250,
         }}
         bounds="parent"
-
       >
         <div className="w-full h-full">
           <div>
-            <BasicSticky stickyType={Reminder} headerSticky={false} />
+            <Sticky stickyType={Reminder} headerSticky={false} />
           </div>
         </div>
       </Rnd>

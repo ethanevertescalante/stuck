@@ -1,4 +1,4 @@
-import BasicSticky from "@/app/components/Stickies/BasicSticky";
+import Sticky from "@/app/components/Stickies/Sticky";
 import { Reminder, Note } from "@/app/lib/StickyType";
 
 export default function Body() {
@@ -9,17 +9,13 @@ export default function Body() {
         Click {"->"} Type {"->"} Go
       </p>
       <div className="relative flex flex-row justify-center w-full gap-22 items-center">
-        <BasicSticky
+        <Sticky
           stickyType={Reminder}
           headerSticky={true}
           stickyTitle={"Reminder"}
         />
         <p className="text-header-main">OR</p>
-        <BasicSticky
-          stickyType={Note}
-          headerSticky={true}
-          stickyTitle={"Note"}
-        />
+        <Sticky stickyType={Note} headerSticky={true} stickyTitle={"Note"} />
       </div>
     </div>
   );

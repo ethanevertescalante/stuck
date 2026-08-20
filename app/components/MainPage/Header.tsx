@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import StickyIcon from "@/public/StickyIcon.svg";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 export default function Header() {
   const size = { width: 63, height: 50 };
-    const pathname= usePathname().slice(1);
+  const pathname = usePathname().slice(1);
   return (
     <header>
       <div className="flex items-center p-3 align-baseline bg-header-gray h-[94px] ">
@@ -32,9 +32,12 @@ export default function Header() {
           />
           <p className="text-header-main leading-none ">ck/</p>
         </Link>
-          <Link href={pathname} className="text-header-sub self-end leading-none hover:text-main-gray underline">
-              {pathname}
-          </Link>
+        <Link
+          href={pathname}
+          className="text-header-sub self-end leading-none hover:text-main-gray underline"
+        >
+          {pathname}
+        </Link>
         <div className=" flex justify-end w-full items-center align-baseline p-3">
           <Link
             href={"/login"}
