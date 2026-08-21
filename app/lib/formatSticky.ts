@@ -1,10 +1,14 @@
 import { format } from "date-fns";
-import { DateTime } from "luxon";
 
-export function formatStickyDate(date: DateTime) {
+
+export function formatStickyDateTime(date: Date) {
   return format(date, "M/d/yy '@' h:mma");
 }
 
-export function formatStickyTime(date: DateTime) {
+export function formatStickyTime(date: Date) {
   return format(date, " '@' h:mma")
+}
+
+export function formatStickyDate(date: Date) {
+  return format(date, "M/d/yy");
 }

@@ -45,6 +45,7 @@ export const StickyConfig: Record<
   NOTE: {
     title: "Note",
     color: "bg-notes-yellow",
+    accentColor: "bg-notes-yellow-accent",
     icon: NoteIcon,
     size: {
       header: {
@@ -61,6 +62,7 @@ export const StickyConfig: Record<
   REMINDER: {
     title: "Reminder",
     color: "bg-reminder-blue",
+    accentColor: "bg-reminder-blue-accent",
     icon: ReminderIcon,
     size: {
       header: {

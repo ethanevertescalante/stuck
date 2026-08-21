@@ -19,7 +19,7 @@ export default function Sticky({
 
   const stickyConfig = StickyConfig[stickyType];
   const [title, setTitle] = useState<string>(stickyTitle || stickyConfig.title);
-  const [date, setDate] = useState<DateTime>(new Date());
+  const [date, setDate] = useState<Date>(new Date());
 
   return (
     <>

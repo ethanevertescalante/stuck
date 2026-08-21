@@ -1,5 +1,5 @@
-import { Reminder, StickyConfig, StickyType } from "@/app/lib/StickyType";
-import {formatStickyDate, formatStickyTime} from "@/app/lib/formatSticky";
+import { Reminder } from "@/app/lib/StickyType";
+import {formatStickyDate, formatStickyDateTime, formatStickyTime} from "@/app/lib/formatSticky";
 import {ChangeEvent, useRef, useState} from "react";
 import { StickyProps } from "@/app/lib/StickyProps";
 import type { FocusEvent } from "react";
@@ -94,16 +94,21 @@ export default function HeaderSticky({
                 />
             </div>
         ): (
-            <CalendarSticky date={date || new Date()} setDate={setDate} displayDate={displayDate} setDisplayDate={setDisplayDate}/>
+            <>
+                {date && setDate &&(
+                    <CalendarSticky date={date || new Date()} setDate={setDate} displayDate={displayDate} setDisplayDate={setDisplayDate}/>
+
+                )}
+            </>
         )}
-        {stickyType === Reminder && (
+        {stickyType === Reminder && date && (
             <button onClick={() => calendar()} className="absolute top-2 text-sticky-small hover:text-main-gray cursor-pointer">
                 {isSameDay(date, new Date()) ? (
-                    <div>Today {formatStickyTime(date)}</div>
+                    <div>Today ({formatStickyDate(date)}) {formatStickyTime(date)}</div>
                 ) : isTomorrow( date ,new Date()) ?(
-                    <div>Tomorrow {formatStickyTime(date)}</div>
+                    <div>Tomorrow ({formatStickyDate(date)}) {formatStickyTime(date)}</div>
                 ) : (
-                    <div>{DaysOfWeek[date?.getDay()]}, {formatStickyDate(date)}</div>
+                    <div>{DaysOfWeek[date?.getDay()]}, {formatStickyDateTime(date)}</div>
                 )}
 
             </button>
