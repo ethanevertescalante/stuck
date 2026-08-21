@@ -73,12 +73,12 @@ export default function HeaderSticky({
             onFocus={() => titleCheck()}
             onBlur={(e) => titleReset(e)}
             onChange={(e) => titleChange(e)}
-            className="w-full h-[112px] min-h-[112px] resize-none overflow-y-auto [scrollbar-width:none] [scrollbar-color:rgba(0,0,0,0.2)_transparent] bg-transparent outline-none text-center text-header-main leading-tight pointer-events-none"/>
+            className={`w-full h-[112px] min-h-[112px] resize-none overflow-y-auto [scrollbar-width:none] [scrollbar-color:rgba(0,0,0,0.2)_transparent] bg-transparent outline-none text-center text-header-main leading-tight pointer-events-none`}/>
                 <span
-                    className="
+                    className={`
               bg-current
-              group-focus-within:hidden
-            "
+              group-focus-within:hidden 
+            `}
                     style={{
                         width: size.width,
                         height: size.height,
@@ -97,12 +97,11 @@ export default function HeaderSticky({
             <>
                 {date && setDate &&(
                     <CalendarSticky date={date || new Date()} setDate={setDate} displayDate={displayDate} setDisplayDate={setDisplayDate}/>
-
                 )}
             </>
         )}
         {stickyType === Reminder && date && (
-            <button onClick={() => calendar()} className="absolute top-2 text-sticky-small hover:text-main-gray cursor-pointer">
+            <button onClick={() => calendar()} className={`absolute top-2 text-sticky-small hover:text-main-gray cursor-pointer `}>
                 {isSameDay(date, new Date()) ? (
                     <div>Today ({formatStickyDate(date)}) {formatStickyTime(date)}</div>
                 ) : isTomorrow( date ,new Date()) ?(

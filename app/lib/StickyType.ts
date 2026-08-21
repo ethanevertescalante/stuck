@@ -5,6 +5,7 @@ import type { StaticImageData } from "next/image";
 export type StickyConfigProps = {
   title: string;
   color: string;
+  accentColor: string;
   icon: StaticImageData;
   size: {
     header: {
@@ -20,27 +21,11 @@ export type StickyConfigProps = {
 
 export const Reminder = "REMINDER";
 export const Note = "NOTE";
-
 export type StickyType = "NOTE" | "REMINDER";
 
 export const StickyConfig: Record<
   StickyType,
-  {
-    title: string;
-    color: string;
-    accentColor: string;
-    icon: StaticImageData;
-    size: {
-      header: {
-        width: number;
-        height: number;
-      };
-      normal: {
-        width: number;
-        height: number;
-      };
-    };
-  }
+  StickyConfigProps
 > = {
   NOTE: {
     title: "Note",
