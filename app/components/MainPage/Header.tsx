@@ -3,10 +3,15 @@
 import StickyIcon from "@/public/StickyIcon.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "@/lib/auth-client";
 
 export default function Header() {
   const size = { width: 63, height: 50 };
   const pathname = usePathname().slice(1);
+
+  const {data: session, isPending} = useSession();
+  const username = session?.user.username;
+
   return (
     <header>
       <div className="flex items-center p-3 align-baseline bg-header-gray h-[94px] ">
@@ -39,12 +44,19 @@ export default function Header() {
           {pathname}
         </Link>
         <div className=" flex justify-end w-full items-center align-baseline p-3">
-          <Link
-            href={"/login"}
-            className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray"
-          >
-            Sign In
-          </Link>
+            {isPending ? (
+                <p>------</p>
+            ): username ? (
+                <button className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray">{session?.user.username}</button>
+
+                ) : (
+                <Link
+                    href={"/login"}
+                    className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray"
+                >
+                    Sign In
+                </Link>
+            )}
         </div>
       </div>
     </header>
