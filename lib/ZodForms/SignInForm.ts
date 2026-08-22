@@ -1,12 +1,11 @@
 import * as z from "zod"
+import {FormEvent} from "react";
 
-const signInForm = z.object({
-    username: z.string({
-        error: "Please enter username or email",
-    })
+export const signInForm = z.object({
+    username: z.string()
         .trim()
-        .min(1),
-    password: z.string({
-        error: "Please enter password",
-    }).min(1),
+        .min(1, "Please enter username or email"),
+    password: z.string()
+        .min(1, "Please enter password"),
 })
+
