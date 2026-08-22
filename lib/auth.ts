@@ -1,7 +1,9 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "@/lib/prisma";
-import {username} from "better-auth/plugins";
+import {oAuthProxy, username} from "better-auth/plugins";
+import {createAuthMiddleware} from "@better-auth/core/api";
+import {nextCookies} from "better-auth/next-js";
 
 
 export const auth = betterAuth({
@@ -11,8 +13,10 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
     },
-
-    plugins: [
-        username(),
-    ],
+    hooks: {
+        after: createAuthMiddleware(async (ctx) => {
+            console.log("Auth Hook Triggered:", ctx.path);
+        }),
+    },
+    plugins: [username(),oAuthProxy(), nextCookies()]
 });

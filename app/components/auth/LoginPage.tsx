@@ -13,7 +13,7 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<{
     username?: string;
     password?: string;
-    loginError?: string;
+    signInError?: string;
   }>({});
 
   const signIntoApp = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,7 +58,7 @@ export default function LoginPage() {
 
       if (error) {
         setErrors({
-          loginError: "Login failed, please try again",
+          signInError: "Login failed, please try again",
         })
       }
     }
@@ -92,7 +92,7 @@ export default function LoginPage() {
         >
           Login
         </button>
-        {errors.loginError && (<p className="text-error text-size-error">{errors.loginError}</p>)}
+        {errors.signInError && (<p className="text-error text-size-error">{errors.signInError}</p>)}
         <Link
           href={"/register"}
           className="outline-header-gray text-header-sub hover:text-main-gray underline"

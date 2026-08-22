@@ -11,3 +11,4 @@ export const { useSession } = authClient
 export const { signIn } = authClient
 export const { signUp } = authClient
 export const { signOut } = authClient
+export const { isUsernameAvailable } = authClient
