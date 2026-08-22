@@ -1,4 +1,4 @@
-import {StickyType, StickyConfigProps} from "@/app/lib/StickyType";
+import {StickyType, StickyConfigProps} from "@/lib/StickyType";
 
 export type StickyProps = {
   title: string;

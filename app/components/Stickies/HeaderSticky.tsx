@@ -1,10 +1,10 @@
-import { Reminder } from "@/app/lib/StickyType";
-import {formatStickyDate, formatStickyDateTime, formatStickyTime} from "@/app/lib/formatSticky";
+import { Reminder } from "@/lib/StickyType";
+import {formatStickyDate, formatStickyDateTime, formatStickyTime} from "@/lib/formatSticky";
 import {ChangeEvent, useRef, useState} from "react";
-import { StickyProps } from "@/app/lib/StickyProps";
+import { StickyProps } from "@/lib/StickyProps";
 import type { FocusEvent } from "react";
 import CalendarSticky from "@/app/components/Stickies/CalendarSticky";
-import {DaysOfWeek} from "@/app/lib/DaysOfWeek";
+import {DaysOfWeek} from "@/lib/DaysOfWeek";
 
 export default function HeaderSticky({
   title,
