@@ -5,8 +5,11 @@ import { signIn } from "@/lib/auth-client";
 import {useState} from "react";
 import {signInForm} from "@/lib/ZodForms/SignInForm";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+
+  const router = useRouter();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -40,16 +43,22 @@ export default function LoginPage() {
     const isEmail = username.includes("@");
 
     if (isEmail) {
-      const {error} = await signIn.email({
+      const { data ,error } = await signIn.email({
         email:userInfo.username,
         password: userInfo.password,
+        callbackURL: "/"
       });
 
       if (error) {
         setErrors({
           ...errors,
         })
+
+        return;
       }
+
+
+
     }else{
       const {error} = await signIn.username({
         username:userInfo.username,
@@ -60,10 +69,13 @@ export default function LoginPage() {
         setErrors({
           signInError: "Login failed, please try again",
         })
+        return;
       }
+
     }
 
-
+    router.replace("/");
+    router.refresh()
 
   }
 

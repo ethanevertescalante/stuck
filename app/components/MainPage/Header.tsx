@@ -4,6 +4,7 @@ import StickyIcon from "@/public/StickyIcon.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
+import SessionDropdown from "@/app/components/MainPage/SessionDropdown";
 
 export default function Header() {
   const size = { width: 63, height: 50 };
@@ -47,8 +48,7 @@ export default function Header() {
             {isPending ? (
                 <p>------</p>
             ): username ? (
-                <button className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray">{session?.user.username}</button>
-
+                <SessionDropdown username={username} />
                 ) : (
                 <Link
                     href={"/login"}
