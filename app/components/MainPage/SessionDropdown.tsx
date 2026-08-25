@@ -21,17 +21,16 @@ export default function SessionDropdown({
             <DropdownMenuTrigger render={<button className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray">{username}</button>} />
             <DropdownMenuContent className="w-50 rounded-none  bg-header-gray" align="start">
                 <DropdownMenuGroup className="focus:text-main-gray" >
-                    <DropdownMenuLabel className="text-main-gray">My Account</DropdownMenuLabel>
-                    <DropdownMenuItem className="text-sticky-sub focus:bg-main-gray ">
+                    <DropdownMenuItem className="cursor-pointer text-sticky-sub focus:bg-main-gray ">
                         My Boards
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="text-sticky-sub focus:bg-main-gray ">
+                    <DropdownMenuItem className="cursor-pointer text-sticky-sub focus:bg-main-gray ">
                         My Stickies
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator/>
                 <DropdownMenuGroup>
-                    <DropdownMenuItem variant={"destructive"} onClick={() => signOut()} className="text-sticky-sub focus:text-red-400 ">
+                    <DropdownMenuItem variant={"destructive"} onClick={() => signOut()} className="cursor-pointer text-sticky-sub focus:text-red-400 ">
                         Sign out
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
