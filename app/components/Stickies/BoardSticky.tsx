@@ -1,5 +1,5 @@
-import { Reminder } from "@/app/lib/StickyType";
-import { StickyProps } from "@/app/lib/StickyProps";
+import { Reminder } from "@/lib/StickyType";
+import { StickyProps } from "@/lib/StickyProps";
 
 export default function BoardSticky({
   title,

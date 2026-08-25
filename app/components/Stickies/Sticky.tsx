@@ -1,5 +1,5 @@
 "use client";
-import { StickyConfig, StickyType} from "@/app/lib/StickyType";
+import { StickyConfig, StickyType} from "@/lib/StickyType";
 import {  useState } from "react";
 import { DateTime } from "luxon";
 import HeaderSticky from "@/app/components/Stickies/HeaderSticky";

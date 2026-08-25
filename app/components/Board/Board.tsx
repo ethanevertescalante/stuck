@@ -1,7 +1,7 @@
 "use client";
 
 import Sticky from "@/app/components/Stickies/Sticky";
-import { Note, Reminder } from "@/app/lib/StickyType";
+import { Note, Reminder } from "@/lib/StickyType";
 import { Rnd } from "react-rnd";
 
 export default function Board() {

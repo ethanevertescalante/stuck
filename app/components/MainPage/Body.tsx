@@ -1,5 +1,5 @@
 import Sticky from "@/app/components/Stickies/Sticky";
-import { Reminder, Note } from "@/app/lib/StickyType";
+import { Reminder, Note } from "@/lib/StickyType";
 
 export default function Body() {
   return (
