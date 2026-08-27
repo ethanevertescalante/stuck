@@ -102,6 +102,8 @@ model Sticky {
   stickyContent String?
   stickyDueDate DateTime?
 
+  //later we will add other columns for media
+
   @@unique([id])
   @@map("sticky")
 }
