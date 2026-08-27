@@ -1,6 +1,6 @@
 "use client";
-import { StickyConfig, StickyType} from "@/lib/StickyType";
-import {  useState } from "react";
+import { StickyConfig, StickyType } from "@/lib/StickyType";
+import { useState } from "react";
 import { DateTime } from "luxon";
 import HeaderSticky from "@/app/components/Stickies/HeaderSticky";
 import BoardSticky from "@/app/components/Stickies/BoardSticky";
@@ -16,7 +16,6 @@ export default function Sticky({
   headerSticky,
   stickyTitle,
 }: BasicStickyProps) {
-
   const stickyConfig = StickyConfig[stickyType];
   const [title, setTitle] = useState<string>(stickyTitle || stickyConfig.title);
   const [date, setDate] = useState<Date>(new Date());
@@ -24,22 +23,22 @@ export default function Sticky({
   return (
     <>
       {headerSticky ? (
-       <HeaderSticky
-           title={title}
-           setTitle={setTitle}
-           date={date}
-           setDate={setDate}
-           stickyType={stickyType}
-           stickyConfig={stickyConfig}
-           headerSticky={headerSticky}
-       />
+        <HeaderSticky
+          title={title}
+          setTitle={setTitle}
+          date={date}
+          setDate={setDate}
+          stickyType={stickyType}
+          stickyConfig={stickyConfig}
+          headerSticky={headerSticky}
+        />
       ) : (
         <BoardSticky
-            title={title}
-            setTitle={setTitle}
-            stickyType={stickyType}
-            stickyConfig={stickyConfig}
-            headerSticky={headerSticky}
+          title={title}
+          setTitle={setTitle}
+          stickyType={stickyType}
+          stickyConfig={stickyConfig}
+          headerSticky={headerSticky}
         />
       )}
     </>

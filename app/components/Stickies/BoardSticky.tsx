@@ -8,11 +8,13 @@ export default function BoardSticky({
   stickyConfig,
   headerSticky,
 }: StickyProps) {
-    const size = headerSticky
-        ? stickyConfig.size.header
-        : stickyConfig.size.normal;
+  const size = headerSticky
+    ? stickyConfig.size.header
+    : stickyConfig.size.normal;
   return (
-    <div className={`relative flex items-baseline  ${stickyConfig.color} w-sticky-small h-sticky-small gap-4 shadow-sticky`}>
+    <div
+      className={`relative flex items-baseline  ${stickyConfig.color} w-sticky-small h-sticky-small gap-4 shadow-sticky`}
+    >
       <div className="flex-1 min-w-0 ml-2 text-sticky-small leading-none underline hover:text-main-gray cursor-pointer">
         {title}
       </div>
