@@ -15,11 +15,13 @@ export default function BoardSticky({
     <div
       className={`relative flex items-baseline  ${stickyConfig.color} w-sticky-small h-sticky-small gap-4 shadow-sticky`}
     >
-      <div className="flex-1 min-w-0 ml-2 text-sticky-small leading-none underline hover:text-main-gray cursor-pointer">
-        {title}
+      <div className={`flex-1 `}>
+        <div className={`min-w-0 ml-2 w-fit text-sticky-small leading-none underline hover:text-main-gray cursor-pointer`}>
+            {title}
+        </div>
       </div>
       {stickyType === Reminder && (
-        <div className="absolute cursor-pointer bottom-2 right-2 whitespace-nowrap leading-none underline hover:text-main-gray text-sticky-sub">
+        <div className={`absolute cursor-pointer bottom-2 right-2 whitespace-nowrap leading-none underline hover:text-main-gray text-sticky-sub`}>
           Due Today @ 9PM
         </div>
       )}
