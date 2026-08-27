@@ -23,10 +23,7 @@ export const Reminder = "REMINDER";
 export const Note = "NOTE";
 export type StickyType = "NOTE" | "REMINDER";
 
-export const StickyConfig: Record<
-  StickyType,
-  StickyConfigProps
-> = {
+export const StickyConfig: Record<StickyType, StickyConfigProps> = {
   NOTE: {
     title: "Note",
     color: "bg-notes-yellow",

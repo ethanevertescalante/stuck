@@ -5,56 +5,58 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
 import SessionDropdown from "@/app/components/MainPage/SessionDropdown";
-import HeaderDirectory from "@/app/components/MainPage/HeaderDirectory";
-
-
+import NavDropdown from "@/app/components/MainPage/NavDropdown";
 
 export default function Header() {
   const size = { width: 63, height: 50 };
   const pathname = usePathname().slice(1);
 
-  const {data: session, isPending} = useSession();
+  const { data: session, isPending } = useSession();
   const username = session?.user.username;
 
   return (
     <header>
-      <div className="flex items-center p-3 align-baseline bg-header-gray h-[94px] ">
-        <Link
-          href={"/"}
-          className="outline-header-gray flex items-center hover:text-main-gray"
-        >
-          <p className="text-header-main leading-none">St</p>
-          <span
-            className=" relative bg-current top-[6px]"
-            style={{
-              width: size.width,
-              height: size.height,
-              WebkitMaskImage: `url(${StickyIcon.src})`,
-              maskImage: `url(${StickyIcon.src})`,
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-              WebkitMaskPosition: "center",
-              maskPosition: "center",
-              WebkitMaskSize: "contain",
-              maskSize: "contain",
-            }}
-          />
-          <p className="text-header-main leading-none ">ck</p>
-        </Link>
-          <HeaderDirectory pathname={pathname}/>
+      <div className="flex items-center align-baseline bg-header-gray h-[94px] ">
+        <div className="flex items-center gap-0">
+          <Link
+            href={"/"}
+            className="outline-header-gray flex items-center hover:text-main-gray"
+          >
+            <p className="text-header-main leading-none">St</p>
+            <span
+              className=" relative bg-current top-[6px]"
+              style={{
+                width: size.width,
+                height: size.height,
+                WebkitMaskImage: `url(${StickyIcon.src})`,
+                maskImage: `url(${StickyIcon.src})`,
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskPosition: "center",
+                maskPosition: "center",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+              }}
+            />
+            <p className="text-header-main leading-none ">ck</p>
+          </Link>
+            <span className="text-header-main leading-none hover:text-main-gray">
+              <NavDropdown pathname={pathname} />
+            </span>
+        </div>
         <div className=" flex justify-end w-full items-center align-baseline p-3">
-            {isPending ? (
-                <p>------</p>
-            ): username ? (
-                <SessionDropdown username={username} />
-                ) : (
-                <Link
-                    href={"/login"}
-                    className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray"
-                >
-                    Sign In
-                </Link>
-            )}
+          {isPending ? (
+            <p>------</p>
+          ) : username ? (
+            <SessionDropdown username={username} />
+          ) : (
+            <Link
+              href={"/login"}
+              className="outline-header-gray text-header-sub underline hover:cursor-pointer hover:text-main-gray"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
     </header>
