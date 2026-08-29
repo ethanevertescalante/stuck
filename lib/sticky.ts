@@ -13,6 +13,7 @@ export async function getStickies() {
 }
 
 export async function createSticky(data: StickyData) {
+    console.log("fish: ",data.stickyDueDate);
     const response = await axios.post(`/api/sticky`, data);
     return response.data;
 }

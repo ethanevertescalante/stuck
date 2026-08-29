@@ -8,7 +8,7 @@ import { StickyType } from "@/app/generated/prisma/enums";
 const createStickySchema = z.object({
     stickyName: z.string().min(1, "Please enter a name for the sticky"),
     stickyContent: z.string().optional(),
-    stickyDate: z.date().optional(),
+    stickyDueDate: z.coerce.date().optional(),
     stickyType: z.enum(StickyType),
 })
 
@@ -37,6 +37,7 @@ export async function POST (request: NextRequest) {
         const user = await requireUser();
 
         const body = await request.json();
+        console.log(body);
         const result = createStickySchema.safeParse(body);
         if(!result.success){
             return NextResponse.json(
@@ -45,13 +46,14 @@ export async function POST (request: NextRequest) {
             )
         }
 
-        const {stickyName, stickyContent, stickyType, stickyDate } = result.data;
+        const {stickyName, stickyContent, stickyType, stickyDueDate } = result.data;
+        console.log(stickyDueDate);
         const sticky = await prisma.sticky.create({
             data:{
                 stickyName: stickyName,
                 stickyContent: stickyContent,
                 stickyType: stickyType,
-                stickyDueDate: stickyDate,
+                stickyDueDate: stickyDueDate,
                 userId: user.id,
             }
         })

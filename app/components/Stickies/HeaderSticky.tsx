@@ -32,7 +32,17 @@ export default function HeaderSticky({
     new Date(date || new Date()),
   );
 
-  console.log(title, date, stickyType)
+  console.log("date: ",date)
+
+  const addSticky = async () => {
+    await createSticky({
+      stickyName: title,
+      stickyType: stickyType,
+      stickyDueDate: date || undefined
+    })
+
+    setTitle("");
+  }
 
   const calendar = () => {
     if (showCalendar) {
@@ -140,11 +150,7 @@ export default function HeaderSticky({
       )}
       {addToBoardCheck && (
         <button
-          onClick={() => createSticky({
-            stickyName: title,
-            stickyType: stickyType,
-            stickyDueDate: date || undefined
-          })}
+          onClick={() => addSticky()}
           className={`absolute top-full shadow-sticky w-full text-header-sub underline text-center ${stickyConfig.color} hover:text-main-gray`}
         >
           Add {stickyConfig.title}
