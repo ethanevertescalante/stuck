@@ -10,6 +10,7 @@ import type { FocusEvent } from "react";
 import CalendarSticky from "@/app/components/Stickies/CalendarSticky";
 import { DaysOfWeek } from "@/lib/DaysOfWeek";
 import { createSticky } from "@/lib/sticky";
+import { toast } from "@/components/ui/toast";
 
 export default function HeaderSticky({
   title,
@@ -40,6 +41,11 @@ export default function HeaderSticky({
       stickyType: stickyType,
       stickyDueDate: date || undefined
     })
+
+    toast.add({
+      title: `Created "${title}"`,
+      type: "custom",
+    });
 
     setTitle("");
   }
