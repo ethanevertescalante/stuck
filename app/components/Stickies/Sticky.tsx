@@ -1,7 +1,7 @@
 "use client";
-import { StickyConfig, StickyType } from "@/lib/StickyType";
+import { StickyConfig } from "@/lib/StickyType";
+import { StickyType } from "@/app/generated/prisma/enums";
 import { useState } from "react";
-import { DateTime } from "luxon";
 import HeaderSticky from "@/app/components/Stickies/HeaderSticky";
 import BoardSticky from "@/app/components/Stickies/BoardSticky";
 

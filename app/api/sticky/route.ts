@@ -32,7 +32,7 @@ export async function GET () {
     }
 }
 
-async function POST (request: NextRequest) {
+export async function POST (request: NextRequest) {
     try{
         const user = await requireUser();
 
@@ -67,11 +67,11 @@ async function POST (request: NextRequest) {
     }
 }
 
-
-function PUT (req: NextRequest, res: NextResponse) {
-
-}
-
-function DELETE (req: NextRequest, res: NextResponse) {
-
-}
+//
+// function PUT (req: NextRequest, res: NextResponse) {
+//
+// }
+//
+// function DELETE (req: NextRequest, res: NextResponse) {
+//
+// }

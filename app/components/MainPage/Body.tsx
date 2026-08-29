@@ -1,6 +1,5 @@
 import Sticky from "@/app/components/Stickies/Sticky";
-import { Reminder, Note } from "@/lib/StickyType";
-
+import { StickyType } from "@/app/generated/prisma/enums";
 export default function Body() {
   return (
     <div className="flex-1 flex flex-col justify-start  items-center w-full min-h-screen  bg-main-gray overflow-hidden">
@@ -10,12 +9,12 @@ export default function Body() {
       </p>
       <div className="relative flex flex-row justify-center w-full gap-22 items-center">
         <Sticky
-          stickyType={Reminder}
+          stickyType={StickyType.REMINDER}
           headerSticky={true}
           stickyTitle={"Reminder"}
         />
         <p className="text-header-main">OR</p>
-        <Sticky stickyType={Note} headerSticky={true} stickyTitle={"Note"} />
+        <Sticky stickyType={StickyType.NOTE} headerSticky={true} stickyTitle={"Note"} />
       </div>
     </div>
   );
