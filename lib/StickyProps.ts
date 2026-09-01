@@ -14,4 +14,4 @@ export type BoardStickyProps = {
   title: string;
   date: Date;
   stickyType: StickyType;
-}
+};

@@ -1,11 +1,7 @@
-import {NextResponse} from "next/server";
-
+import { NextResponse } from "next/server";
 
 export function serverError(message: string, error: unknown) {
-    console.error(message, error);
+  console.error(message, error);
 
-    return NextResponse.json(
-        {error: "Internal Server Error"},
-        {status: 501}
-    );
+  return NextResponse.json({ error: "Internal Server Error" }, { status: 501 });
 }

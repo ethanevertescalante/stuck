@@ -40,9 +40,9 @@ export default function Header() {
             />
             <p className="text-header-main leading-none ">ck</p>
           </Link>
-            <span className="text-header-main leading-none hover:text-main-gray">
-              <NavDropdown pathname={pathname} />
-            </span>
+          <span className="text-header-main leading-none hover:text-main-gray">
+            <NavDropdown pathname={pathname} />
+          </span>
         </div>
         <div className=" flex justify-end w-full items-center align-baseline p-3">
           {isPending ? (
