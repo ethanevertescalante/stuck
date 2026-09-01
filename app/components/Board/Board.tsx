@@ -15,7 +15,9 @@ export default function Board() {
     return (
       <div className="h-screen flex flex-row gap-5 overflow-hidden bg-main-gray justify-center items-center text-header-main">
         <span>Please</span>
-        <Link className="underline hover:text-header-gray" href={"/login"}>Login</Link>
+        <Link className="underline hover:text-header-gray" href={"/login"}>
+          Login
+        </Link>
         <span> To See Board!</span>
       </div>
     );
@@ -45,7 +47,7 @@ export default function Board() {
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-main-gray">
-      {stickies?.map((sticky: StickyData) => (
+      {stickies.map((sticky: StickyData) => (
         <Rnd
           key={sticky.id}
           default={{
@@ -59,6 +61,8 @@ export default function Board() {
           <div className="w-full h-full">
             <div>
               <BoardSticky
+                key={sticky.id}
+                id={sticky.id}
                 title={sticky.stickyName}
                 stickyType={sticky.stickyType}
                 date={sticky.stickyDueDate || new Date()}

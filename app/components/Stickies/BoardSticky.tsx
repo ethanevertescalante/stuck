@@ -1,8 +1,10 @@
 import { Reminder, StickyConfig } from "@/lib/StickyType";
 import { BoardStickyProps } from "@/lib/StickyProps";
 import { formatStickyDateTime } from "@/lib/formatSticky";
+import Link from "next/link";
 
 export default function BoardSticky({
+  id,
   title,
   stickyType,
   date,
@@ -16,11 +18,12 @@ export default function BoardSticky({
       className={`relative flex items-baseline  ${stickyConfig.color} w-sticky-small h-sticky-small gap-4 shadow-sticky`}
     >
       <div className={`flex-1`}>
-        <div
+        <Link
+          href={`/board/${id}`}
           className={`min-w-0 ml-2 w-fit text-sticky-small leading-none underline hover:text-main-gray cursor-pointer`}
         >
           {title}
-        </div>
+        </Link>
       </div>
       {stickyType === Reminder && (
         <div

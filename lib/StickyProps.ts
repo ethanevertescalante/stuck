@@ -11,6 +11,7 @@ export type StickyProps = {
 };
 
 export type BoardStickyProps = {
+  id: string;
   title: string;
   date: Date;
   stickyType: StickyType;
