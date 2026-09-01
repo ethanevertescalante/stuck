@@ -12,15 +12,15 @@ export default function Board() {
     const { data: stickies, isPending, isError } = useStickies();
 
     if(isPending) {
-        return <div>Loading...</div>
+        return <div className="h-screen flex flex-col overflow-hidden bg-main-gray justify-center items-center"></div>
     }
 
     if(isError) {
-        return <div>Failed To Load Stickies</div>
+        return <div className="h-screen flex flex-col overflow-hidden bg-main-gray justify-center items-center text-header-main text-error">Failed To Load Stickies, Please Refresh</div>
     }
 
     if(stickies.length === 0) {
-        return <div>No Stickies!</div>
+        return <div className="h-screen flex flex-col overflow-hidden bg-main-gray justify-center items-center text-header-main">No Stickies!</div>
     }
 
   return (
