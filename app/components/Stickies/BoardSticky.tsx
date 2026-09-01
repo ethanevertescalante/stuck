@@ -1,16 +1,17 @@
-import { Reminder } from "@/lib/StickyType";
-import { StickyProps } from "@/lib/StickyProps";
+import {Reminder, StickyConfig} from "@/lib/StickyType";
+import { BoardStickyProps } from "@/lib/StickyProps";
+import {formatStickyDateTime} from "@/lib/formatSticky";
 
 export default function BoardSticky({
-  title,
-  setTitle,
+                                        title,
   stickyType,
-  stickyConfig,
-  headerSticky,
-}: StickyProps) {
-  const size = headerSticky
-    ? stickyConfig.size.header
-    : stickyConfig.size.normal;
+  date
+}: BoardStickyProps) {
+    const stickyConfig = StickyConfig[stickyType];
+
+  const size = stickyConfig.size.normal;
+
+
   return (
     <div
       className={`relative flex items-baseline  ${stickyConfig.color} w-sticky-small h-sticky-small gap-4 shadow-sticky`}
@@ -22,7 +23,7 @@ export default function BoardSticky({
       </div>
       {stickyType === Reminder && (
         <div className={`absolute cursor-pointer bottom-2 right-2 whitespace-nowrap leading-none underline hover:text-main-gray text-sticky-sub`}>
-          Due Today @ 9PM
+            Due {formatStickyDateTime(date)}
         </div>
       )}
       <span

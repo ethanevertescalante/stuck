@@ -21,8 +21,6 @@ export default function Sticky({
   const [date, setDate] = useState<Date>(new Date());
 
   return (
-    <>
-      {headerSticky ? (
         <HeaderSticky
           title={title}
           setTitle={setTitle}
@@ -32,15 +30,5 @@ export default function Sticky({
           stickyConfig={stickyConfig}
           headerSticky={headerSticky}
         />
-      ) : (
-        <BoardSticky
-          title={title}
-          setTitle={setTitle}
-          stickyType={stickyType}
-          stickyConfig={stickyConfig}
-          headerSticky={headerSticky}
-        />
-      )}
-    </>
   );
 }

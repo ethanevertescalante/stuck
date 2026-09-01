@@ -1,13 +1,34 @@
 "use client";
 
 import Sticky from "@/app/components/Stickies/Sticky";
-import { Note, Reminder } from "@/lib/StickyType";
+import {Note, Reminder, StickyConfig} from "@/lib/StickyType";
 import { Rnd } from "react-rnd";
+import {useStickies} from "@/lib/useStickies";
+import BoardSticky from "@/app/components/Stickies/BoardSticky";
+import { StickyData } from "@/lib/sticky";
 
 export default function Board() {
+
+    const { data: stickies, isPending, isError } = useStickies();
+
+    if(isPending) {
+        return <div>Loading...</div>
+    }
+
+    if(isError) {
+        return <div>Failed To Load Stickies</div>
+    }
+
+    if(stickies.length === 0) {
+        return <div>No Stickies!</div>
+    }
+
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-main-gray">
-      <Rnd
+        {stickies?.map((sticky: StickyData) => (
+
+        <Rnd
+            key={sticky.id}
         default={{
           x: 100,
           y: 100,
@@ -18,25 +39,16 @@ export default function Board() {
       >
         <div className="w-full h-full">
           <div>
-            <Sticky stickyType={Note} headerSticky={false} />
+                     <BoardSticky
+                         title={sticky.stickyName}
+                         stickyType={sticky.stickyType}
+                         date={sticky.stickyDueDate || new Date()}
+                     />
+
           </div>
         </div>
       </Rnd>
-      <Rnd
-        default={{
-          x: 600,
-          y: 100,
-          width: 250,
-          height: 250,
-        }}
-        bounds="parent"
-      >
-        <div className="w-full h-full">
-          <div>
-            <Sticky stickyType={Reminder} headerSticky={false} />
-          </div>
-        </div>
-      </Rnd>
+        ))}
     </div>
   );
 }

@@ -1,19 +1,19 @@
 import axios from "axios";
+import { StickyType } from "@/app/generated/prisma/enums";
 
-type StickyData = {
+export type StickyData = {
     stickyName: string;
-    stickyType: string;
+    stickyType: StickyType;
     stickyContent?: string;
     stickyDueDate?: Date;
 }
 
-export async function getStickies() {
-    const response = await axios.get(`/api/sticky`);
-    return response.data;
+export async function getStickies(): Promise<StickyData[]> {
+    const response = await axios.get<{ data: StickyData[] }>(`/api/sticky`);
+    return response.data.data;
 }
 
 export async function createSticky(data: StickyData) {
-    console.log("fish: ",data.stickyDueDate);
     const response = await axios.post(`/api/sticky`, data);
     return response.data;
 }
