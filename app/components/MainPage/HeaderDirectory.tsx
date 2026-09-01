@@ -1,14 +1,10 @@
 import Link from "next/link";
-import { PathnameColors } from "@/lib/PathnameColor";
 
 type HeaderDirectoryProps = {
   pathname: string;
 };
 
 export default function HeaderDirectory({ pathname }: HeaderDirectoryProps) {
-  const baseColor = PathnameColors[pathname].baseColor;
-  const accentColor = PathnameColors[pathname].accentColor;
-
   return (
     <Link
       href={`/${pathname}`}

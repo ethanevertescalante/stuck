@@ -3,7 +3,7 @@ import { Jersey_15, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toast"
-import { QueryProvider } from "@/components/providers/QueryProvider";
+import { QueryProvider } from "@/app/components/providers/QueryProvider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
