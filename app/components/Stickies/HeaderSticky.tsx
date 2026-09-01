@@ -1,4 +1,4 @@
-import { Reminder } from "@/lib/StickyType";
+import { StickyType } from "@/app/generated/prisma/enums";
 import {
   formatStickyDate,
   formatStickyDateTime,
@@ -9,6 +9,8 @@ import { StickyProps } from "@/lib/StickyProps";
 import type { FocusEvent } from "react";
 import CalendarSticky from "@/app/components/Stickies/CalendarSticky";
 import { DaysOfWeek } from "@/lib/DaysOfWeek";
+import { createSticky } from "@/lib/sticky";
+import { toast } from "@/components/ui/toast";
 
 export default function HeaderSticky({
   title,
@@ -19,6 +21,8 @@ export default function HeaderSticky({
   stickyConfig,
   headerSticky,
 }: StickyProps) {
+
+
   const size = headerSticky
     ? stickyConfig.size.header
     : stickyConfig.size.normal;
@@ -28,6 +32,23 @@ export default function HeaderSticky({
   const [displayDate, setDisplayDate] = useState<Date>(
     new Date(date || new Date()),
   );
+
+  console.log("date: ",date)
+
+  const addSticky = async () => {
+    await createSticky({
+      stickyName: title,
+      stickyType: stickyType,
+      stickyDueDate: date || undefined
+    })
+
+    toast.add({
+      title: `Created "${title}"`,
+      type: "custom",
+    });
+
+    setTitle("");
+  }
 
   const calendar = () => {
     if (showCalendar) {
@@ -113,7 +134,7 @@ export default function HeaderSticky({
           )}
         </>
       )}
-      {stickyType === Reminder && date && (
+      {stickyType === StickyType.REMINDER && date && (
         <button
           onClick={() => calendar()}
           className={`absolute top-2 text-sticky-small hover:text-main-gray cursor-pointer `}
@@ -135,6 +156,7 @@ export default function HeaderSticky({
       )}
       {addToBoardCheck && (
         <button
+          onClick={() => addSticky()}
           className={`absolute top-full shadow-sticky w-full text-header-sub underline text-center ${stickyConfig.color} hover:text-main-gray`}
         >
           Add {stickyConfig.title}
