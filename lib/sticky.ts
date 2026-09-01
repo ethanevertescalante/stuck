@@ -6,6 +6,7 @@ export type StickyData = {
     stickyType: StickyType;
     stickyContent?: string;
     stickyDueDate?: Date;
+    id?: string;
 }
 
 export async function getStickies(): Promise<StickyData[]> {
