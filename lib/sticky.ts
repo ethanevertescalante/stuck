@@ -14,6 +14,12 @@ export async function getStickies(): Promise<StickyData[]> {
   return response.data.data;
 }
 
+export async function getSticky(id: string) {
+  const response = await axios.get<{ data: StickyData[] }>(`/api/sticky/${id}`);
+  return response.data.data
+}
+
+
 export async function createSticky(data: StickyData) {
   const response = await axios.post(`/api/sticky`, data);
   return response.data;

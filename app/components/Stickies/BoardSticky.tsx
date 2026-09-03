@@ -2,6 +2,7 @@ import { Reminder, StickyConfig } from "@/lib/StickyType";
 import { BoardStickyProps } from "@/lib/StickyProps";
 import { formatStickyDateTime } from "@/lib/formatSticky";
 import Link from "next/link";
+import StickyDetailPage from "@/app/board/[stickyId]/page";
 
 export default function BoardSticky({
   id,

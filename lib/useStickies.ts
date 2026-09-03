@@ -7,3 +7,10 @@ export function useStickies() {
     queryFn: getStickies,
   });
 }
+
+export function useSticky(stickyId: string) {
+  return useQuery({
+    queryKey: [queryKeys.stickies.all, stickyId],
+    queryFn: getStickies,
+  })
+}
