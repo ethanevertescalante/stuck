@@ -64,6 +64,7 @@ export default function Board() {
                 key={sticky.id}
                 id={sticky.id}
                 title={sticky.stickyName}
+                content={sticky.stickyContent}
                 stickyType={sticky.stickyType}
                 date={sticky.stickyDueDate || new Date()}
               />
