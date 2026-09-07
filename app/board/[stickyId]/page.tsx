@@ -12,5 +12,5 @@ export default async function StickyDetailPage({
 
     const { stickyId } = await params;
 
-    return <StickyDetailPopup stickyId={stickyId}/>
+    return  <StickyDetailPopup stickyId={stickyId} />;
 }

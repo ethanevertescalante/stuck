@@ -1,28 +1,27 @@
 "use client"
 
 import {useSticky} from "@/lib/useStickies";
-import { StickyType} from "@/app/generated/prisma/enums";
-
 type StickyDetailPopupProps = {
     stickyId: string;
 }
 
 export default function StickyDetailPopup({ stickyId }: StickyDetailPopupProps) {
     const {data: sticky, isPending, isError} = useSticky(stickyId);
-
+    console.log("StickyDetailPopup", sticky);
     if (isPending) {
-        return (
-            <div className="h-screen flex flex-col overflow-hidden bg-main-gray justify-center items-center"></div>
-        );
+        return null;
     }
 
-        if (isError) {
-            return (
-                <div className="h-screen flex flex-col overflow-hidden bg-main-gray justify-center items-center text-header-main text-error">
-                    Failed To Load Sticky, Please Refresh
+
+    if (isError) {
+        return (
+            <div className="fixed inset-0 pointer-events-none">
+                <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    Failed To Load Sticky
                 </div>
-            );
-        }
+            </div>
+        );
+    }
     //
     // if (!sticky) {
     //     return (
@@ -33,10 +32,9 @@ export default function StickyDetailPopup({ stickyId }: StickyDetailPopupProps) 
     // }
 
     return (
-        <div className={"flex gap-3"}>
-            <div>{sticky.stickyName}</div>
-            <div>{sticky.stickyContent}</div>
-
+        <div className="h-sticky w-sticky">
+                <div>dogs</div>
+                <div>Cats</div>
         </div>
     )
 }
