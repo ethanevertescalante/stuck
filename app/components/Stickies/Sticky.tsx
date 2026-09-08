@@ -3,7 +3,6 @@ import { StickyConfig } from "@/lib/StickyType";
 import { StickyType } from "@/app/generated/prisma/enums";
 import { useState } from "react";
 import HeaderSticky from "@/app/components/Stickies/HeaderSticky";
-import BoardSticky from "@/app/components/Stickies/BoardSticky";
 
 type BasicStickyProps = {
   stickyType: StickyType;

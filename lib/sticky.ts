@@ -6,8 +6,10 @@ export type StickyData = {
   stickyType: StickyType;
   stickyContent?: string;
   stickyDueDate?: Date;
-  id?: string;
+  id: string;
 };
+
+export type StickyDataCreation = Pick<StickyData, "stickyName" | "stickyType" | "stickyDueDate">
 
 export async function getStickies(): Promise<StickyData[]> {
   const response = await axios.get<{ data: StickyData[] }>(`/api/sticky`);
@@ -19,7 +21,7 @@ export async function getSticky(stickyId: string): Promise<StickyData> {
   return response.data.data
 }
 
-export async function createSticky(data: StickyData) {
+export async function createSticky(data: StickyDataCreation) {
   const response = await axios.post(`/api/sticky`, data);
   return response.data;
 }
