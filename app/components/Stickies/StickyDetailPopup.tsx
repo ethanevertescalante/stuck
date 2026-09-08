@@ -34,7 +34,7 @@ export default function StickyDetailPopup({ stickyId }: StickyDetailPopupProps) 
     const config = StickyConfig[sticky?.stickyType]
     return (
         <div className={`h-sticky w-sticky ${config.color}`}>
-            <h1 className="ml-2 underline text-sticky-small">{sticky?.stickyName}</h1>
+            <h1 className={`ml-2 underline text-sticky-small w-fit h-fit`}>{sticky?.stickyName}</h1>
             <p className="min-w-0 mt-2 ml-2 w-7/8 leading-none text-sticky-sub italic max-h-30 overflow-hidden">{sticky?.stickyContent}</p>
         </div>
     )
