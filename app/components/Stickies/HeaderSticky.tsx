@@ -21,8 +21,6 @@ export default function HeaderSticky({
   stickyConfig,
   headerSticky,
 }: StickyProps) {
-
-
   const size = headerSticky
     ? stickyConfig.size.header
     : stickyConfig.size.normal;
@@ -33,14 +31,14 @@ export default function HeaderSticky({
     new Date(date || new Date()),
   );
 
-  console.log("date: ",date)
+  console.log("date: ", date);
 
   const addSticky = async () => {
     await createSticky({
       stickyName: title,
       stickyType: stickyType,
-      stickyDueDate: date || undefined
-    })
+      stickyDueDate: date || undefined,
+    });
 
     toast.add({
       title: `Created "${title}"`,
@@ -48,7 +46,7 @@ export default function HeaderSticky({
     });
 
     setTitle("");
-  }
+  };
 
   const calendar = () => {
     if (showCalendar) {

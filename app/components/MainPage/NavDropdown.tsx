@@ -12,7 +12,7 @@ type NavDropdownProps = {
   pathname: string;
 };
 
-const links: { title: string; href: string, pathname: string }[] = [
+const links: { title: string; href: string; pathname: string }[] = [
   {
     title: "home",
     href: "/",
@@ -25,9 +25,7 @@ const links: { title: string; href: string, pathname: string }[] = [
   },
 ];
 
-
 export default function NavDropdown({ pathname }: NavDropdownProps) {
-
   const availablePathnames = links.filter((link) => link.pathname !== pathname);
 
   return (
@@ -40,7 +38,11 @@ export default function NavDropdown({ pathname }: NavDropdownProps) {
           <NavigationMenuContent className="w-full bg-header-gray text-sticky-small">
             {availablePathnames.map((path) => {
               return (
-                <Link href={path.href} className={`flex hover:text-main-gray`} key={path.href}>
+                <Link
+                  href={path.href}
+                  className={`flex hover:text-main-gray`}
+                  key={path.href}
+                >
                   {path.title}
                 </Link>
               );

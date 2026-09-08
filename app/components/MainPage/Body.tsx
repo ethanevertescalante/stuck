@@ -14,7 +14,11 @@ export default function Body() {
           stickyTitle={"Reminder"}
         />
         <p className="text-header-main">OR</p>
-        <Sticky stickyType={StickyType.NOTE} headerSticky={true} stickyTitle={"Note"} />
+        <Sticky
+          stickyType={StickyType.NOTE}
+          headerSticky={true}
+          stickyTitle={"Note"}
+        />
       </div>
     </div>
   );
