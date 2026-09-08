@@ -3,13 +3,11 @@
 import { useRouter } from "next/navigation"
 import { useEffect, useRef } from "react"
 import StickyDetailPopup from "@/app/components/Stickies/StickyDetailPopup";
+import { useParams } from "next/navigation";
 
-type ModalProps = {
-    stickyId: string
-}
-
-export default function Modal(params: ModalProps) {
-    const { stickyId } = params
+export default function Modal() {
+    const params = useParams<{ stickyId: string }>();
+    const { stickyId } = params;
     const router = useRouter();
     const dialogRef = useRef<HTMLDialogElement> (null)
     useEffect(() => {
@@ -20,17 +18,32 @@ export default function Modal(params: ModalProps) {
         <dialog
             ref={dialogRef}
             onClose={() => router.back()}
-            className="fixed inset-0 m-auto border p-4 rounded h-sticky w-sticky overflow-hidden"
+            onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                    dialogRef.current?.close();
+                }
+            }}
+            className="fixed inset-0 w-screen h-screen max-w-none max-h-none bg-transparent"
         >
-            <button
-                className="absolute top-2 right-4 border-none"
-                onClick={() => dialogRef.current?.close()}
-            >
-                &times;
-            </button>
+            <div
+                className="
+      absolute
+      inset-0
+      m-auto
+      w-sticky
+      h-sticky
 
-            <h1 className="text-3xl font-bold">Test</h1>
-            <StickyDetailPopup stickyId={stickyId} />
+      overflow-hidden
+    "
+            >
+                <button
+                    className="absolute  right-4 text-sticky-small"
+                    onClick={() => dialogRef.current?.close()}
+                >
+                    &times;
+                </button>
+                <StickyDetailPopup stickyId={stickyId} />
+            </div>
         </dialog>
     )
 }

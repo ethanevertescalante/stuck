@@ -12,12 +12,14 @@ export async function GET(
         const user = await requireUser();
         const { stickyId } = await params;
 
-        const sticky = await prisma.sticky.findFirst({
+
+        const sticky = await prisma.sticky.findUnique({
             where: {
                 id: stickyId,
                 userId: user.id
             },
         })
+
 
         return NextResponse.json({
             data: sticky
