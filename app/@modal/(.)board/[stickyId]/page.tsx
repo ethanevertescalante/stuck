@@ -37,7 +37,7 @@ export default function Modal() {
     "
             >
                 <button
-                    className="absolute  right-4 text-sticky-small"
+                    className="absolute  right-4 text-sticky-small cursor-pointer"
                     onClick={() => dialogRef.current?.close()}
                 >
                     &times;
